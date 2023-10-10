@@ -1,6 +1,4 @@
-
-
-source "./lib.zsh";
+import "./lib.ash";
 
 switch $1 {
   case "--help|help" {
