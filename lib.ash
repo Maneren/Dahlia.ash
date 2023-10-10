@@ -20,9 +20,7 @@ fn dahlia_clean() {
   let msg = "$*";
 
   if ! msg || msg == "-" {
-		for line in "${(@f)\"$(</dev/stdin)\"}" {
-			msg += line;
-		}
+		msg = "$(</dev/stdin)";
 	}
 
   for regex in __DH_CODE_REGEXES {
@@ -44,9 +42,7 @@ fn dahlia_clean_ansi() {
   let msg = "$*";
 
   if ! msg || msg == "-" {
-		for line in "${(@f)\"$(</dev/stdin)\"}" {
-			msg += line;
-		}
+		msg = "$(</dev/stdin)";
 	}
 
   for regex in __DH_ANSI_REGEXES {
@@ -143,6 +139,9 @@ fn dahlia() {
 	}
 
 	let msg = "$*";
+	if ! msg || msg == "-" {
+		msg = "$(</dev/stdin)";
+	}
 
   if is_truthy(NO_COLOR) || is_truthy(DAHLIA_NO_COLOR) {
     dahlia_clean(msg);
